@@ -336,4 +336,51 @@ $(document).ready(function () {
       transitions
     );
   }
+
+  $("#autoGenBtn").click(function () {
+    autoGenerateTransitions();
+  });
+
+  function autoGenerateTransitions() {
+    let states = prompt('Enter number of states: ');
+    let n = Number(states);
+    let k = n*2 - 1;
+
+    function createTransition() {
+        let transitionsDiv = $("#nfa-transitions");
+        let clone = $("#nfa-transitions .production-row").last().clone(true);
+
+        clone.appendTo(transitionsDiv);
+
+        $(".remove-button").show();
+    }
+
+    function sliceIntoChunks(arr, chunkSize) {
+        const res = [];
+        for (let i = 0; i < arr.length; i += chunkSize) {
+            const chunk = arr.slice(i, i + chunkSize);
+            res.push(chunk);
+        }
+        return res;
+    }
+
+    for(let i = 0; i < k; i++) createTransition();
+
+    let arr = $("#nfa-transitions .production-row").toArray();
+    let c = sliceIntoChunks(arr, 2);
+
+    c.forEach(function(pair, idx) {
+        $(pair[0]).find('.input-symbol').val('a');
+        $(pair[1]).find('.input-symbol').val('b');
+        $(pair[0]).find('.current-state-input').val(idx+1);
+        $(pair[1]).find('.current-state-input').val(idx+1);
+
+        $(pair[0]).find('.next-states').val(idx+1);
+        $(pair[1]).find('.next-states').val(idx+1);
+    });
+
+    $('#initialStateInput').val('1');
+    $('#finalStatesInput').val('5');
+    $("#verify-update-debug").click();
+  }
 });
