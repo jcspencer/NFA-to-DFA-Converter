@@ -375,12 +375,12 @@ $(document).ready(function () {
         $(pair[0]).find('.current-state-input').val(idx+1);
         $(pair[1]).find('.current-state-input').val(idx+1);
 
-        $(pair[0]).find('.next-states').val(idx+1);
-        $(pair[1]).find('.next-states').val(idx+1);
+        $(pair[0]).find('.next-states').val('');
+        $(pair[1]).find('.next-states').val('');
     });
 
     $('#initialStateInput').val('1');
-    $('#finalStatesInput').val('5');
+    $('#finalStatesInput').val(k);
     $("#verify-update-debug").click();
   }
 });
