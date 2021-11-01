@@ -380,7 +380,7 @@ $(document).ready(function () {
     });
 
     $('#initialStateInput').val('1');
-    $('#finalStatesInput').val(k);
+    $('#finalStatesInput').val(n);
     $("#verify-update-debug").click();
   }
 });
